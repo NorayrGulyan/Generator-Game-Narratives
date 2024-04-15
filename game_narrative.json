@@ -1,0 +1,58 @@
+[
+    {
+        "type": "user_action",
+        "component": "TTCollectThree2DUserAction",
+        "params": {
+            "outcome": "win"
+        }
+    },
+    {
+        "type": "user_action",
+        "component": "TTCollectThree2DUserAction",
+        "params": {
+            "outcome": "fail"
+        }
+    },
+    {
+        "type": "user_action",
+        "component": "TTCollectThree2DUserAction",
+        "params": {
+            "outcome": "almostwin"
+        }
+    },
+    {
+        "type": "user_action",
+        "component": "TTCollectThree2DUserAction",
+        "params": {
+            "outcome": "almostfail"
+        }
+    },
+    {
+        "type": "user_action",
+        "component": "TTCollectThree2DUserAction",
+        "params": {
+            "outcome": "fail"
+        }
+    },
+    {
+        "type": "user_action",
+        "component": "TTCollectThree2DUserAction",
+        "params": {
+            "outcome": "almostwin"
+        }
+    },
+    {
+        "type": "user_action",
+        "component": "TTCollectThree2DUserAction",
+        "params": {
+            "outcome": "almostwin"
+        }
+    },
+    {
+        "type": "gameplay_outcome",
+        "component": "FinalOutcome",
+        "params": {
+            "final_outcome": "fail"
+        }
+    }
+]
