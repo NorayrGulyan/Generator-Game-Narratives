@@ -31,14 +31,14 @@
         "type": "user_action",
         "component": "TTCollectThree2DUserAction",
         "params": {
-            "outcome": "fail"
+            "outcome": "win"
         }
     },
     {
         "type": "user_action",
         "component": "TTCollectThree2DUserAction",
         "params": {
-            "outcome": "almostwin"
+            "outcome": "fail"
         }
     },
     {
@@ -52,7 +52,7 @@
         "type": "gameplay_outcome",
         "component": "FinalOutcome",
         "params": {
-            "final_outcome": "fail"
+            "final_outcome": "win"
         }
     }
 ]

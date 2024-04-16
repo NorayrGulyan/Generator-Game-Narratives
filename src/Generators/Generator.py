@@ -2,9 +2,9 @@ import json
 
 
 class GameGenerator:
-    def __init__(self, statuses=None):
+    def __init__(self, statuses):
         print("Initializing Generator")
-        self.statuses = {"win": 2, "almostwin": 1, "almostfail": -1, "fail": -2} if statuses is None else statuses
+        self.statuses = statuses
 
     def generate_game_actions(self, statuses: list) -> list:
         if statuses is not None:

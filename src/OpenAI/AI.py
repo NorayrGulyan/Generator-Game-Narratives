@@ -4,12 +4,12 @@ from openai import OpenAI
 
 
 class OpenAIAssistant:
-    def __init__(self, min_items: int, max_items: int, key=None, statuses=None):
-        self.max_items = max_items
-        self.min_items = min_items
-        self.get_rit = False
+    def __init__(self, min_count_actions: int, max_count_actions: int, statuses, key=None):
+        self.min_count_actions = min_count_actions
+        self.max_count_actions = max_count_actions
+        self.statuses = statuses
+        self.response_status = False
         self.client = None
-        self.statuses = {"win": 2, "almostwin": 1, "almostfail": -1, "fail": -2} if statuses is None else statuses
         if key is None:
             self.key = os.environ.get('OPENAI_API_KEY')
         else:
@@ -27,15 +27,16 @@ class OpenAIAssistant:
 
     def generate_statuses(self) -> list:
         if self.client is not None:
-            while not self.get_rit:
+            while not self.response_status:
                 response = self.client.chat.completions.create(
                     model="gpt-3.5-turbo",
                     response_format={"type": "json_object"},
+                    frequency_penalty=-1,
                     messages=[
                         {
-                            "role": "user",
+                            "role": "system",
                             "content": f"""generate a list of objects in JSON format from the given string 
-                          "win", "fail", "almostwin", "almostfail" with a number of {self.min_items} to {self.max_items} 
+                          "win", "fail", "almostwin", "almostfail" with a number of {self.min_count_actions} to {self.max_count_actions} 
                           objects and return only the list in json format"""
                         }
                     ],
@@ -47,12 +48,12 @@ class OpenAIAssistant:
             content = json.loads(response.choices[0].message.content)
             content = content['objects']
             count = len(content)
-            if self.min_items <= count <= self.max_items and type(content[0]) == str:
+            if self.min_count_actions <= count <= self.max_count_actions and type(content[0]) == str:
                 for i in range(count):
                     if content[i] in self.statuses:
-                        self.get_rit = True
+                        self.response_status = True
                         continue
                     else:
-                        self.get_rit = False
+                        self.response_status = False
                         break
             return content
